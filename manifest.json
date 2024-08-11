@@ -12,12 +12,11 @@
   "content_scripts": [
       {
           "js": [
+              "app/scripts/jquery.js",
               "app/scripts/content.js"
           ],
           "matches": [
-              "https://*/*",
-              "http://*/*",
-              "file:///"
+              "<all_urls>"
           ]
       }
   ]

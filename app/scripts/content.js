@@ -1,5 +1,13 @@
+console.log("vz");
+
 console.log("Content script");
 
-$('*').each(function(index) {
-  console.log("element." + index + " = " + $(this).text());
-});
+function visitElement(index) {
+  const element = $(this);
+  
+  console.log("element." + index + " = " + element);
+  console.log("[" + index + "].children = " + element.children().length);
+  console.log("[" + index + "].text = " + element.text());
+}
+
+$('*').each(visitElement);
