@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Linkify URLs",
+  "version": "1.0",
+  "description": "Linkifies any raw URL on a web page so that it can be clicked on.",
+  "icons": {
+      "32": "app/images/favicon.ico",
+      "180": "app/images/apple-touch-icon.png",
+      "192": "app/images/icon-192.png",
+      "512": "app/images/icon-512.png"
+  },
+  "content_scripts": [
+      {
+          "js": [
+              "app/scripts/content.js"
+          ],
+          "matches": [
+              "https://*/*",
+              "http://*/*",
+              "file:///"
+          ]
+      }
+  ]
+}
