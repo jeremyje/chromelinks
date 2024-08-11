@@ -1,0 +1,37 @@
+name: Build
+on:
+  push:
+    tags: ["v*"]
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  # Set the job key. The key is displayed as the job name
+  # when a job name is not provided
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        # https://github.com/actions/checkout
+        uses: actions/checkout@v4
+
+      - name: Setup NPM
+        # https://github.com/actions/setup-node
+        uses: actions/setup-node@v4
+
+      - name: Prepare Build
+        run: |
+          make clean
+          make all
+
+      - name: Create Release
+        # https://github.com/softprops/action-gh-release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+          files: |
+            chromelinks.zip
